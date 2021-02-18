@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.iamthat);
+
         //Assigning audio manager some variables
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         int maxVol= audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
@@ -57,7 +59,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.iamthat);
+        SeekBar seekBar1= findViewById(R.id.seekBar2);
+        seekBar1.setMax(mediaPlayer.getDuration());
+
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                seekBar1.setProgress(mediaPlayer.getCurrentPosition());
+            }
+        },0 ,1000);
+        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                mediaPlayer.seekTo(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
 
 
 

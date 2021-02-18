@@ -67,6 +67,13 @@
             android:layout_marginBottom="43dp"
             android:layout_margin="8dp"/>
 
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="43dp"
+            android:layout_margin="8dp"/>
+
         <VideoView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
